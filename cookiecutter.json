@@ -1,0 +1,29 @@
+{
+    "project_name": "My new project",
+    "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
+    "project_app_package": "app",
+    "description": "My new project with the flask web framework",
+    "author_name": "Thierry Chappuis",
+    "domain_name": "example.com",
+    "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@example.com",
+    "version": "0.1.0",
+    "open_source_license": [
+      "MIT",
+      "BSD",
+      "GPLv3",
+      "Apache Software License 2.0",
+      "Not open source"
+    ],
+    "require_specific_python": "y",
+    "required_python_version": "3.7",
+    "use_flask_wtf": "y",
+    "use_flask_sqlalchemy": "y",
+    "use_flask_migrate": "y",
+    "use_flask_bootstrap": "n",
+    "use_flask_mail": "n",
+    "use_flask_moment": "n",
+    "include_moment_js_dependencies": "n",
+    "moment_locale": "en",
+  
+    "debug": "n"
+  }

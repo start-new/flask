@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="{% block html_lang %}en{% endblock %}">
+<head>
+    <meta charset="{% block charset %}UTF-8{% endblock %}">
+    {% block metas %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    {% endblock %}
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% if page_title %}{{ page_title }}{% endif %}{% endblock %}</title>
+    {% block head_styles %}{% endblock %}
+    {% block head_scripts %}{% endblock %}
+</head>
+<body>
+    {%block content %}{% endblock %}
+    {%block bottom_scripts %}
+    {{ moment.include_moment() }}
+    {% endblock %}
+</body>
+</html>
