@@ -38,7 +38,7 @@ class ProductionEnvironment(Environment):
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
 
-environment = {
+config = {
     "development": DevelopmentEnvironment,
     "testing": TestingEnvironment,
     "production": ProductionEnvironment,
