@@ -7,7 +7,8 @@ BASE_DIR = pathlib.Path(__file__).resolve().parent
 
 INSTALLED_BLUEPRINTS = [
     {
-        "module": "{{ cookiecutter.project_app_package }}.main.main",
+        "module": "{{ cookiecutter.project_app_package }}.main",
+        "name": "main",
         "prefix": "",
     }
 ]
