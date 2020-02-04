@@ -22,6 +22,7 @@
     "use_flask_bootstrap": "n",
     "use_flask_mail": "n",
     "use_flask_moment": "n",
+    "use_pytest": "y",
     "include_moment_js_dependencies": "n",
     "moment_locale": "en",
   
