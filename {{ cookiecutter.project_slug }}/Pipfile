@@ -4,15 +4,26 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pytest = "*"
+pylint = "*"
+flake8 = "*"
+docformatter = "*"
+isort[requirements,pipfile] = "*"
 
 [packages]
 flask = "*"
 {%- if cookiecutter.use_flask_sqlalchemy == 'y' %}
 flask-sqlalchemy = "*"{% endif %}
-flask-migrate = "*"
-flask-bootstrap = "*"
-flask-mail = "*"
-flask-moment = "*"
+{%- if cookiecutter.use_flask_migrate == 'y' %}
+flask-migrate = "*"{% endif %}
+{%- if cookiecutter.use_flask_bootstrap == 'y' %}
+flask-bootstrap = "*"{% endif %}
+{%- if cookiecutter.use_flask_mail == 'y' %}
+flask-mail = "*"{% endif %}
+{%- if cookiecutter.use_flask_moment == 'y' %}
+flask-moment = "*"{% endif %}
 
+{%- if cookiecutter.required_specific_python == 'y' %}
 [requires]
-python_version = "3.7"
+python_version = "{{ cookiecutter.required_python_version }}"
+{% endif %}
