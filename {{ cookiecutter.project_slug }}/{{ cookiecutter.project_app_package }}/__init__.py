@@ -3,21 +3,29 @@
 from importlib import import_module
 
 from flask import Flask
-from flask_bootstrap import Bootstrap
-from flask_mail import Mail
-from flask_moment import Moment
-from flask_sqlalchemy import SQLAlchemy
-from flask_wtf.csrf import CSRFProtect
+{%- if cookiecutter.use_flask_bootstrap == 'y' %}
+from flask_bootstrap import Bootstrap{% endif %}
+{%- if cookiecutter.use_flask_mail == 'y' %}
+from flask_mail import Mail{% endif %}
+{%- if cookiecutter.use_flask_moment == 'y' %}
+from flask_moment import Moment{% endif %}
+{%- if cookiecutter.use_flask_sqlalchemy == 'y' %}
+from flask_sqlalchemy import SQLAlchemy{% endif %}
+{%- if cookiecutter.use_flask_wtf == 'y' %}
+from flask_wtf.csrf import CSRFProtect{% endif %}
 
 import settings
 
-
-bootstrap = Bootstrap()
-mail = Mail()
-moment = Moment()
-db = SQLAlchemy()
-csrf = CSRFProtect()
-
+{%- if cookiecutter.use_flask_bootstrap == 'y' %}
+bootstrap = Bootstrap(){% endif %}
+{%- if cookiecutter.use_flask_mail == 'y' %}
+mail = Mail(){% endif %}
+{%- if cookiecutter.use_flask_moment == 'y' %}
+moment = Moment(){% endif %}
+{%- if cookiecutter.use_flask_sqlalchemy == 'y' %}
+db = SQLAlchemy(){% endif %}
+{%- if cookiecutter.use_flask_wtf == 'y' %}
+csrf = CSRFProtect(){% endif %}
 
 def create_app(env):
     """Factory function responsible for lazy app creation.
@@ -31,11 +39,16 @@ def create_app(env):
     settings.environments[env].init_app(app)
 
     # Configuration of extensions
-    bootstrap.init_app(app)
-    mail.init_app(app)
-    moment.init_app(app)
-    db.init_app(app)
-    csrf.init_app(app)
+    {%- if cookiecutter.use_flask_bootstrap == 'y' %}
+    bootstrap.init_app(app){% endif %}
+    {%- if cookiecutter.use_flask_mail == 'y' %}
+    mail.init_app(app){% endif %}
+    {%- if cookiecutter.use_flask_moment == 'y' %}
+    moment.init_app(app){% endif %}
+    {%- if cookiecutter.use_flask_sqlalchemy == 'y' %}
+    db.init_app(app){% endif %}
+    {%- if cookiecutter.use_flask_wtf == 'y' %}
+    csrf.init_app(app){% endif %}
 
     # Register app blueprints
     for blueprint in settings.INSTALLED_BLUEPRINTS:
