@@ -14,6 +14,8 @@ isort[requirements,pipfile] = "*"
 
 [packages]
 flask = "*"
+{%- if cookiecutter.use_flask_wtf == 'y' %}
+flask-wtf = "*"{% endif %}
 {%- if cookiecutter.use_flask_sqlalchemy == 'y' %}
 flask-sqlalchemy = "*"{% endif %}
 {%- if cookiecutter.use_flask_migrate == 'y' %}
