@@ -9,7 +9,8 @@ from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 
-from config import config, INSTALLED_BLUEPRINTS
+import settings
+
 
 bootstrap = Bootstrap()
 mail = Mail()
@@ -18,7 +19,7 @@ db = SQLAlchemy()
 csrf = CSRFProtect()
 
 
-def create_app(environment):
+def create_app(env):
     """Factory function responsible for lazy app creation.
 
     Args:
@@ -26,8 +27,8 @@ def create_app(environment):
     
     """
     app = Flask(__name__)
-    app.config.from_object(config[environment])
-    config[environment].init_app(app)
+    app.config.from_object(settings.environments[env])
+    settings.environments[env].init_app(app)
 
     # Configuration of extensions
     bootstrap.init_app(app)
@@ -37,13 +38,10 @@ def create_app(environment):
     csrf.init_app(app)
 
     # Register app blueprints
-    for blueprint in INSTALLED_BLUEPRINTS:
-        module_name, blueprint_name = blueprint["module"].rsplit(
-            ".", maxsplit=1
-        )
-        module = import_module(module_name)
+    for blueprint in settings.INSTALLED_BLUEPRINTS:
+        module = import_module(blueprint["module"])
         app.register_blueprint(
-            getattr(module, blueprint_name), url_prefix=blueprint["prefix"]
+            getattr(module, blueprint["name"]), url_prefix=blueprint["prefix"]
         )
 
     return app
